@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -12,14 +13,17 @@ import javax.persistence.*;
 @Entity
 @EqualsAndHashCode
 @ToString
+@Table(name = "images")
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
+
+
     private String extension;
     private String directory;
-    private Integer size;
+    private Long size;
 
 }
