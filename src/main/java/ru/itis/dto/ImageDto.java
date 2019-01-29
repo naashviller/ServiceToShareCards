@@ -16,9 +16,7 @@ import java.util.stream.Collectors;
 public class ImageDto {
     private Long id;
     private String name;
-    private String extension;
-    private String directory;
-    private Integer size;
+
 
     public static ImageDto from(Image image) {
         return ImageDto.builder()

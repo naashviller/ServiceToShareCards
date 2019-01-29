@@ -1,8 +1,8 @@
 package ru.itis.service.impl;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,8 +20,11 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Service
 public class ImageServiceImpl implements ImageService {
+    @Value("${upload.file.extensions}")
+    private String validExtensions;
 
     @Autowired
     private ImageRepository imageRepository;
@@ -46,10 +49,11 @@ public class ImageServiceImpl implements ImageService {
         return image;
     }
 
+    @Override
     public String doUpload(HttpServletRequest request, Model model, MyUploadForm form) {
 
         String description = form.getDescription();
-        String uploadPath = "C:\\Users\\Павлова Анастасия\\Documents\\upload";
+        String uploadPath = "C:\\Project\\upload";
 
         File uploadDir = new File(uploadPath);
 
@@ -76,8 +80,7 @@ public class ImageServiceImpl implements ImageService {
 
                 }
                 String extension = FilenameUtils.getExtension(name);
-                Long size = (serverFile.length())/1024;
-//                String displaySize = FileUtils.byteCountToDisplaySize(size);
+                Long size = (serverFile.length()) / 1024;
 
 
                 ImageForm currentImage = new ImageForm();
@@ -92,9 +95,29 @@ public class ImageServiceImpl implements ImageService {
         }
         model.addAttribute("description", description);
         model.addAttribute("uploadedFiles", uploadedFiles);
+
         return "list";
 
     }
+
+    @Override
+    public Image findImageByName(String name) {
+        return imageRepository.findImageByName(name);
+
+    }
+
+    @Override
+    public String getFileExtension(String name) {
+        int dotIndex = name.lastIndexOf(".");
+
+        if (dotIndex < 0) {
+            return null;
+        }
+
+        return name.substring(dotIndex + 1);
+    }
+
+
 
 
 }

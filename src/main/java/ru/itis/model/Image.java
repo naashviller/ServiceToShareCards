@@ -25,5 +25,6 @@ public class Image {
     private String extension;
     private String directory;
     private Long size;
+    private String contentType;
 
 }

@@ -14,5 +14,9 @@ public interface ImageService {
 
     Image saveImage(ImageForm imageForm);
     String doUpload(HttpServletRequest request, Model model, MyUploadForm form);
+    Image findImageByName(String name);
+    String getFileExtension(String name);
+    //boolean isValidExtension(String name);
+
 
 }
