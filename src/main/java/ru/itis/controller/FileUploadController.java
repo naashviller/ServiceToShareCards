@@ -44,14 +44,20 @@ public class FileUploadController {
     public void getImage(HttpServletResponse response, @PathVariable String name) throws IOException {
 
         Image im = imageService.findImageByName(name);
+        log.error("1");
         File imageFile = new File("C:\\Project\\upload\\" + im.getName());
-        log.error("зашли в папку и нашли фотку");
+        log.error("2");
         response.setContentType(im.getContentType());
+        log.error("3");
         response.setContentLength(im.getSize().intValue());
+        log.error("4");
 
         try {
+            log.error("5");
             InputStream is = new FileInputStream(imageFile);
+            log.error("6");
             IOUtils.copy(is, response.getOutputStream());
+            log.error("7");
         } catch (IOException e) {
             log.error("Could not show picture " + name, e);
         }
