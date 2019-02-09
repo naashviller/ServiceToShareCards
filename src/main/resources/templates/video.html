@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Video</title>
+
+    <script type="text/javascript" src="/js/flowplayer-3.2.2.min.js"></script>
+    <script type='text/javascript' src='/js/flowplayer.controls-3.2.1.swf'></script>
+</head>
+<body>
+
+<a th:href="@{'image/' + ${name}}"
+   style="display:block;width:525px;height:425px;"
+   id="player">
+</a>
+
+<script language="JavaScript">
+    flowplayer("player", "/js/flowplayer-3.2.2.swf");
+</script>
+
+</body>
+</html>

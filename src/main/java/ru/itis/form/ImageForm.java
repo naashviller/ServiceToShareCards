@@ -26,7 +26,6 @@ public class ImageForm {
     private String name;
 
     @NotNull
-//    @Size(max = 5)
     private String extension;
 
     @NotNull
